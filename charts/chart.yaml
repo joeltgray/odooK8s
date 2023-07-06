@@ -1,0 +1,7 @@
+apiVersion: v2
+name: odoo
+version: 1.0.0
+description: Helm chart for deploying Odoo Community
+maintainers:
+  - name: Joel Gray
+    email: joel@joelgray.work
