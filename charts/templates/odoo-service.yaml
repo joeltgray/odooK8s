@@ -7,6 +7,6 @@ spec:
     app: {{ .Values.odoo.name }}
   ports:
     - protocol: TCP
-      port: {{ .Values.service.port }}
-      targetPort: 8069
-  type: {{ .Values.service.type }}
+      port: {{ .Values.odoo.service.port }}
+      targetPort: {{ .Values.odoo.service.port }}
+  type: {{ .Values.odoo.service.type }}

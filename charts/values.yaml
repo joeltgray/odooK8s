@@ -1,11 +1,3 @@
-image:
-  repository: odoo
-  tag: 16.0
-
-service:
-  port: 8069
-  type: ClusterIP
-
 postgres:
   enabled: true
   image:
@@ -14,7 +6,17 @@ postgres:
   postgresUser: odoo
   postgresPassword: odoo
   postgresDatabase: odoo-main
+  name: postgres
+  service:
+    port: 5432
+    type: ClusterIP
 
 odoo:
+  image:
+    repository: odoo
+    tag: 16.0
   fullname: odoo-deployment
   name: odoo
+  service:
+    port: 8069
+    type: ClusterIP

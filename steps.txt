@@ -15,6 +15,9 @@ alias kubectl='microk8s kubectl'
 #check if kubectl installed:
 kubectl version --output=json
 
+#save kube config
+microk8s.kubectl config view --raw > $HOME/.kube/config
+
 #enable necessary microk8s addones
 microk8s enable dns
 microk8s enable hostpath-storage

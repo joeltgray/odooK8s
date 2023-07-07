@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.odoo.name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.odoo.name }}
+    spec:
+      containers:
+        - name: {{ .Values.odoo.name }}
+          image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.odoo.service.port }}
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.postgresUser }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.postgresPassword }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.postgresDatabase }}
+            - name: POSTGRES_HOSTNAME
+              value: postgres-service
+          resources: {}
+          volumeMounts:
+            - name: odoo-entrypoint
+              mountPath: /entrypoint.sh
+      volumes:
+        - name: odoo-entrypoint
+          configMap:
+            name: odoo-entrypoint

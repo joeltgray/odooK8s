@@ -1,32 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.odoo.fullname }}
+  name: postgres
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.odoo.name }}
+      app: {{ .Values.postgres.name }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ .Values.odoo.name }}
+        app: {{ .Values.postgres.name }}
     spec:
       containers:
-        - name: {{ .Values.odoo.name}}
-          image: "odoo-custom:latest"
-          ports:
-            - containerPort: 8069
-          env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.postgresUser }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.postgresPassword }}
-            - name: POSTGRES_DB
-              value: {{ .Values.postgres.postgresDatabase  }}
-          resources: {}
-
-        - name: postgres
+        - name: {{ .Values.postgres.name }}
           image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
           env:
             - name: POSTGRES_USER
@@ -34,7 +21,7 @@ spec:
             - name: POSTGRES_PASSWORD
               value: {{ .Values.postgres.postgresPassword }}
             - name: POSTGRES_DB
-              value: {{ .Values.postgres.postgresDatabase  }}
+              value: {{ .Values.postgres.postgresDatabase }}
           ports:
             - containerPort: 5432
           volumeMounts:
