@@ -16,21 +16,15 @@ spec:
         - name: {{ .Values.odoo.name }}
           image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
           ports:
-            - containerPort: {{ .Values.odoo.service.port }}
           env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.postgresUser }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.postgresPassword }}
-            - name: POSTGRES_DB
-              value: {{ .Values.postgres.postgresDatabase }}
-            - name: POSTGRES_HOSTNAME
-              value: postgres-service
+            - name: USER
+              value: "{{ .Values.postgres.postgresUser }}"
+            - name: PASSWORD
+              value: "{{ .Values.postgres.postgresPassword }}"
+            - name: DB_NAME
+              value: "{{ .Values.postgres.postgresDatabase }}"
+            - name: PORT
+              value: "{{ .Values.postgres.service.port }}"
+            - name: HOST
+              value: "{{ .Values.postgres.postgresService }}"
           resources: {}
-          volumeMounts:
-            - name: odoo-entrypoint
-              mountPath: /entrypoint.sh
-      volumes:
-        - name: odoo-entrypoint
-          configMap:
-            name: odoo-entrypoint

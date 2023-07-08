@@ -6,6 +6,7 @@ postgres:
   postgresUser: odoo
   postgresPassword: odoo
   postgresDatabase: odoo-main
+  postgresService: postgres-service
   name: postgres
   service:
     port: 5432
