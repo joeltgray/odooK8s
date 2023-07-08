@@ -2,12 +2,15 @@
 
 # Function to enable Snap on all OS
 enable_snap() {
-    echo "Enabling snapd with systemd..."
+    echo "Enabling snapd socket with systemd..."
     sudo systemctl enable --now snapd.socket
-    sleep 10
+    perform_sleep "10"
+
+    echo "Enabling snapd service with systemd..."
     sudo systemctl enable snapd.service
     sudo systemctl start snapd.service
-    sudo systemctl status snapd.service
+    sudo snap install core
+    sudo systemctl status snapd.service | cat
 
     echo "Enabling apparmor with systemd..."
     sudo systemctl enable --now apparmor.service
@@ -18,6 +21,8 @@ enable_snap() {
 install_snap_ubuntu() {
     echo "Installing Snap on Ubuntu..."
     sudo apt update
+    sudo apt-get install squashfs-tools
+    sudo modprobe squashfs
     sudo apt install -y snapd
 
     enable_snap
@@ -25,6 +30,9 @@ install_snap_ubuntu() {
 
 # Function to install Snap on Arch Linux
 install_snap_arch() {
+    sudo pacman -S --no-confirm gsquashfs-tools
+    sudo modprobe squashfs
+
     echo "Cloning snapd git repo..."
     git clone https://aur.archlinux.org/snapd.git
     cd snapd
@@ -39,6 +47,21 @@ install_snap_arch() {
 
     echo "Removing snapd install files..."
     cd .. && rm -rf ./snapd
+}
+
+perform_sleep() {
+    local secs=$1
+    echo "Sleeping for $secs seconds..."
+    local chars="/-\|"
+    local animation_speed=0.1
+    local start_time=$(date +%s)
+    local end_time=$((start_time + secs))
+    local i=0
+    while [ "$(date +%s)" -lt "$end_time" ]; do
+        printf "\r%s" "${chars:$((i % ${#chars})):1}"
+        sleep $animation_speed
+        ((i++))
+    done
 }
 
 # Detect the operating system
