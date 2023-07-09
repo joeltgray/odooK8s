@@ -30,7 +30,7 @@ install_snap_ubuntu() {
 
 # Function to install Snap on Arch Linux
 install_snap_arch() {
-    sudo pacman -S --no-confirm gsquashfs-tools
+    sudo pacman -S squashfs-tools
     sudo modprobe squashfs
 
     echo "Cloning snapd git repo..."
@@ -45,8 +45,8 @@ install_snap_arch() {
     echo "Enable classic snap..."
     sudo ln -s /var/lib/snapd/snap /snap
 
-    echo "Removing snapd install files..."
-    cd .. && rm -rf ./snapd
+    # echo "Removing snapd install files..."
+    # cd .. && rm -rf ./snapd
 }
 
 perform_sleep() {

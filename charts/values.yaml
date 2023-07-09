@@ -5,7 +5,7 @@ postgres:
     tag: 13
   postgresUser: odoo
   postgresPassword: odoo
-  postgresDatabase: odoo-main
+  postgresDatabase: odoo
   postgresService: postgres-service
   name: postgres
   service:

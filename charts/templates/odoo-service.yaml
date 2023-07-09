@@ -9,4 +9,5 @@ spec:
     - protocol: TCP
       port: {{ .Values.odoo.service.port }}
       targetPort: {{ .Values.odoo.service.port }}
-  type: {{ .Values.odoo.service.type }}
+      nodePort: 30000  # Specify a desired node port
+  type: NodePort

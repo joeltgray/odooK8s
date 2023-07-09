@@ -14,7 +14,9 @@ spec:
     spec:
       containers:
         - name: {{ .Values.odoo.name }}
-          image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
+          #image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
+          image: "odoo-source:local"
+          imagePullPolicy: Never
           ports:
           env:
             - name: USER
