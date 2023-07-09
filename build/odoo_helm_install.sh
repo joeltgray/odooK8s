@@ -8,7 +8,8 @@ fi
 
 # Build Docker image and save as tar file
 echo "Building Docker image and saving as tar file..."
-docker build -t odoo-source .
+cd ..
+docker build -t odoo-source:local .
 docker save odoo-source:local > odoo-source.tar
 
 # Load image tar into microk8s
@@ -17,7 +18,7 @@ microk8s ctr image import odoo-source.tar
 
 # Install Helm charts
 echo "Installing Helm charts..."
-cd ../charts
+cd ./helm
 helm install odoo . -n odoo
 
 # Check all namespaces

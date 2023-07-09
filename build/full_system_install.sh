@@ -24,7 +24,7 @@ fi
 
 # Execute helm_chart_install.sh
 echo "Executing helm_chart_install.sh..."
-if ./helm_chart_install.sh; then
+if ./odoo_helm_install.sh; then
     echo "Helm chart installation completed successfully."
 else
     echo "Helm chart installation failed. Exiting..."
