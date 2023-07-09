@@ -1,1 +1,5 @@
+venv/
+.vscode/
+odoo-source.tar
 odoo/
+*/snapd/*
