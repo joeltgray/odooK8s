@@ -7,13 +7,18 @@ if ! command -v helm >/dev/null 2>&1; then
 fi
 
 # Build Docker image and save as tar file
-echo "Building Docker image and saving as tar file..."
+echo "Building Docker imagee.."
+echo "This could take a while, image is ~8GB, go get a coffee..."
 cd ..
-docker build -t odoo-source:local .
+docker build --no-cache -t odoo-source:local .
+
+echo "Saving Docker image as tar file..."
+echo "This could also take a while, go get a biscuit for your coffee..."
 docker save odoo-source:local > odoo-source.tar
 
 # Load image tar into microk8s
 echo "Loading image tar into microk8s..."
+echo "Last coffee break, I promise..."
 microk8s ctr image import odoo-source.tar
 
 # Install Helm charts
