@@ -85,6 +85,29 @@ Please note that when using the official Docker image, you won't be able to make
 
 
 ## Possible Issues and Troubleshooting
+
+### Issues with Snap Installation
+
+The installation of Snap packages, such as MicroK8s and Helm, can sometimes encounter issues. If you face any problems during the installation process, you can try one or both of the following approachs:
+
+1. **Re-run the Full System Install Script**: Execute the full system install script again to ensure a clean installation:
+
+   ```
+   ./build/full_system_install.sh
+   ```
+This will reinstall all the dependencies, including Snap packages, and set up the Odoo deployment.
+
+2. Run Snap Uninstall and Install Scripts Separately
+If the full system install script fails to install the Snap packages, you can try running the Snap uninstall and install scripts separately:
+
+```
+./build/snap_uninstall.sh
+./build/snap_install.sh
+```
+Running these scripts individually can help ensure a proper installation of Snap packages.
+
+Please note that these troubleshooting steps are provided as general guidance. It is always recommended to investigate and address specific errors or issues based on your system configuration and requirements.
+
 ### Calico-Node Issues
 In some cases, the Calico-Node pod may encounter issues during deployment. If you face any networking or connectivity problems, ensure that your /etc/hosts file contains the correct mapping for the hostname localhost. You can add the following line to the file if it doesn't already exist:
 
