@@ -1,5 +1,5 @@
 # Use a base image with Python and other dependencies
-FROM python:3.11-slim
+FROM python:3.9-slim
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 # Copy the Odoo requirements code into the container
 COPY ./odoo/requirements.txt requirements.txt
 
-# Update pip
+# Update pip for good measure
 RUN pip install --upgrade pip
 
 # Avoid pip blowing up by fixing problematic library
@@ -34,4 +34,5 @@ RUN chmod u+x /usr/src/app/odoo-bin
 EXPOSE 8069
 
 # Set the entrypoint command to start Odoo
-CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-d odoo"]
+# This will specify the default addons path and initialise the database and not load any demo data
+CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-i all --without-demo=all"]
