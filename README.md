@@ -3,12 +3,14 @@ This repository provides all the necessary files and instructions to deploy the 
 
 This is primarily for deploying Odoo Community from source, but if you wish to use the official docker image see the 'Official Docker Image Install` section.
 
+
 ## Prerequisites
 To get started with the Odoo Community deployment, you will need:
 
 Linux Environment: Ensure you have a Linux-based environment to run the deployment scripts, these scripts supports Arch and also Debian distros like Ubuntu.
 Docker: Ensure you have docker installed, and the correct user permissions to user it as non-root user.
 Git: Ensure you have git installed as it's needed to clone the repo.
+
 
 ## Installation Steps
 Follow the steps below to deploy Odoo Community on Kubernetes:
@@ -38,21 +40,15 @@ http://localhost:30000
 You should now see the Odoo login page, where you can create a new database and start using Odoo.
 Note: Odoos default port is 8069 but as we're exposing it through microk8s it need a nodePort number which begins at 30000.
 
-## Possible Issues and Troubleshooting
-### Calico-Node Issues
-In some cases, the Calico-Node pod may encounter issues during deployment. If you face any networking or connectivity problems, ensure that your /etc/hosts file contains the correct mapping for the hostname localhost. You can add the following line to the file if it doesn't already exist:
-
-```
-127.0.0.1 localhost
-```
 
 ## Additional Information
-
 ### Making Changes to the Source Code
 If you need to make changes to the Odoo source code after the initial installation, you can run the odoo_helm_reinstall.sh script. This script will rebuild and redeploy the Odoo Kubernetes deployment. However, please note that running this script will tear down the existing PostgreSQL database, resulting in data loss. Make sure to back up any critical data before running this script.
 
+
 ### Customization
 If you need to customize any configuration settings, you can modify the values.yaml file located in the helm/odoo directory. This file contains various options such as image repository, tags, service ports, and database credentials.
+
 
 ## Uninstalling Odoo
 If you ever need to uninstall the Odoo deployment, you can use the uninstall script provided:
@@ -63,6 +59,7 @@ If you ever need to uninstall the Odoo deployment, you can use the uninstall scr
 This script will remove all the deployed components and clean up the system.
 
 That's it! You have successfully deployed Odoo Community on Kubernetes using the provided scripts. Enjoy using Odoo for your business needs!
+
 
 ## Official Docker Image Install
 If you prefer to use the official Odoo Docker image instead of building it from source, you can modify the deployment to use the official image. Follow the steps below to deploy Odoo using the official Docker image:
@@ -85,6 +82,15 @@ image:
 This script will rebuild and redeploy the Odoo Kubernetes deployment using the official Odoo Docker image.
 
 Please note that when using the official Docker image, you won't be able to make direct changes to the Odoo source code. 
+
+
+## Possible Issues and Troubleshooting
+### Calico-Node Issues
+In some cases, the Calico-Node pod may encounter issues during deployment. If you face any networking or connectivity problems, ensure that your /etc/hosts file contains the correct mapping for the hostname localhost. You can add the following line to the file if it doesn't already exist:
+
+```
+127.0.0.1 localhost
+```
 
 ## Todo
 
