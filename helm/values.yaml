@@ -14,8 +14,8 @@ postgres:
 
 odoo:
   image:
-    repository: odoo
-    tag: 16.0
+    repository: odoo-source
+    tag: local
   fullname: odoo-deployment
   name: odoo
   service:

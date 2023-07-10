@@ -14,19 +14,18 @@ spec:
     spec:
       containers:
         - name: {{ .Values.odoo.name }}
-          #image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
-          image: "odoo-source:local"
+          image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
           imagePullPolicy: Never
           ports:
           env:
-            - name: USER
+            - name: PGUSER
               value: "{{ .Values.postgres.postgresUser }}"
-            - name: PASSWORD
+            - name: PGPASSWORD
               value: "{{ .Values.postgres.postgresPassword }}"
-            - name: DB_NAME
+            - name: PGDATABASE
               value: "{{ .Values.postgres.postgresDatabase }}"
-            - name: PORT
+            - name: PGPORT
               value: "{{ .Values.postgres.service.port }}"
-            - name: HOST
+            - name: PGHOST
               value: "{{ .Values.postgres.postgresService }}"
           resources: {}
