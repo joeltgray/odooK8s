@@ -7,7 +7,7 @@ if ! command -v helm >/dev/null 2>&1; then
 fi
 
 # Build Docker image and save as tar file
-echo "Building Docker imagee.."
+echo "Building Docker image..."
 echo "This could take a while, image is ~8GB, go get a coffee..."
 cd ..
 docker build --no-cache -t odoo-source:local .
@@ -24,6 +24,10 @@ microk8s ctr image import odoo-source.tar
 # Install Helm charts
 echo "Installing Helm charts..."
 cd ./helm
+
+echo "Uninstalling and installing Odoo Helm chart..."
+helm uninstall odoo -n odoo
+sleep 10
 helm install odoo . -n odoo
 
 # Check all namespaces
