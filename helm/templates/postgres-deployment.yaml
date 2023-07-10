@@ -14,15 +14,13 @@ spec:
     spec:
       containers:
         - name: {{ .Values.postgres.name }}
-          image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
-          imagePullPolicy: IfNotPresent
+          image: "{{ .Values.postgres.image.repository }}"
+          imagePullPolicy: Never
           env:
             - name: POSTGRES_USER
               value: {{ .Values.postgres.postgresUser }}
             - name: POSTGRES_PASSWORD
               value: {{ .Values.postgres.postgresPassword }}
-            - name: POSTGRES_DB
-              value: {{ .Values.postgres.postgresDatabase }}
           ports:
             - containerPort: 5432
           volumeMounts:
