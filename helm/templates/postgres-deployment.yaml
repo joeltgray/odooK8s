@@ -15,6 +15,7 @@ spec:
       containers:
         - name: {{ .Values.postgres.name }}
           image: "{{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}"
+          imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_USER
               value: {{ .Values.postgres.postgresUser }}
