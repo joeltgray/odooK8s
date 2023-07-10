@@ -3,6 +3,13 @@ This repository provides all the necessary files and instructions to **deploy th
 
 This is primarily for deploying Odoo Community from source, but if you wish to use the official docker image see the **'Official Docker Image Install`** section.
 
+**NOTE:** Currently only Arch and Debian Distros are supported and tested.
+
+<div class="warning">
+
+**Warning:** This repo is still under development, some issues to iron out.
+
+</div>
 
 ## Prerequisites
 To get started with the Odoo Community deployment, you will need:
