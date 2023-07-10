@@ -39,20 +39,9 @@ echo "Tagged Odoo Docker image as localhost:32000/odoo-source:local"
 print_info "Pushing Odoo Docker image to microk8s local registry... This could take a while go get another coffee.."
 docker push localhost:32000/odoo-source:local
 
-print_info "Building Postgres Docker image..."
-cd ./build/postgres
-docker build --no-cache -t postgres-custom .
-
-print_info "Tagging Postgres Docker image as microk8s local images..."
-docker tag postgres-custom localhost:32000/postgres-custom:local
-echo "Tagged Postgres Docker image as localhost:32000/postgres-custom:local"
-
-print_info "Pushing Postgres Docker image to microk8s local registry..."
-docker push localhost:32000/postgres-custom:local
-
 # Install Helm charts
 print_info "Installing Helm charts..."
-cd ../../helm
+cd ./helm
 
 print_info "Uninstalling and installing Odoo Helm chart..."
 helm uninstall odoo -n odoo
