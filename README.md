@@ -122,7 +122,9 @@ In some cases, the Calico-Node pod may encounter issues during deployment. If yo
 
 ## Todo
 
-1. Add liveness and readiness probes
+1. Add liveness and readiness probes (minor)
+2. Enable persistent storage for Postgres (major)
+3. Fix kubenetes API probes failing (minor) 
 
 ## Contribute
 
