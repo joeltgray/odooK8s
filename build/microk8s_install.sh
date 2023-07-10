@@ -64,6 +64,7 @@ install_microk8s() {
     # Enable addons
     echo "Enabling MicroK8s addons..."
     microk8s enable dashboard
+    microk8s enable registry
 
     # Create microk8s namespace for our app
     echo "Creating MicroK8s namespace for our app..."

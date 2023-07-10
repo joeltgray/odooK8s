@@ -16,7 +16,6 @@ spec:
         - name: {{ .Values.odoo.name }}
           image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
           imagePullPolicy: Never
-          ports:
           env:
             - name: PGUSER
               value: "{{ .Values.postgres.postgresUser }}"
@@ -29,3 +28,5 @@ spec:
             - name: PGHOST
               value: "{{ .Values.postgres.postgresService }}"
           resources: {}
+          #override the docker command to run odoo
+          args: ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-i base", "--without-demo=all"]
