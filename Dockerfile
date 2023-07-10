@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     libsasl2-dev \
     libssl-dev \
     libpq-dev \
-    python3-pip
+    python3-pip \
+    postgresql-client
 
 # Copy the Odoo requirements code into the container
 COPY ./odoo/requirements.txt requirements.txt
@@ -20,8 +21,8 @@ COPY ./odoo/requirements.txt requirements.txt
 # Update pip for good measure
 RUN pip install --upgrade pip
 
-# Avoid pip blowing up by fixing problematic library
-RUN pip install psycopg2-binary
+# # Avoid pip blowing up by fixing problematic library
+# RUN pip install psycopg2-binary
 
 # Install Odoo dependencies
 RUN pip install -r requirements.txt
@@ -37,4 +38,4 @@ EXPOSE 8069
 
 # Set the entrypoint command to start Odoo
 # This will specify the default addons path and initialise the database and not load any demo data
-CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-d odoo", "-i all --without-demo=all"]
+CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-i base", "--without-demo=all"]
