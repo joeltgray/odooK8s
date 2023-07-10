@@ -1,15 +1,13 @@
 # Odoo Community Deployment on Kubernetes
+
+## WARNING: This repo is still under development for first complete version, you may experience issues. Please report any issues you find. 
+
 This repository provides all the necessary files and instructions to **deploy the Odoo Community system and it's Postgres DB on Kubernetes using Helm charts**. By following the steps below, you can easily set up and run your own Odoo Community instance for free.
 
 This is primarily for deploying Odoo Community from source, but if you wish to use the official docker image see the **'Official Docker Image Install`** section.
 
 **NOTE:** Currently only Arch and Debian Distros are supported and tested.
 
-<div class="warning">
-
-**Warning:** This repo is still under development, some issues to iron out.
-
-</div>
 
 ## Prerequisites
 To get started with the Odoo Community deployment, you will need:
