@@ -2,7 +2,7 @@ postgres:
   enabled: true
   image:
     repository: postgres
-    tag: 13
+    tag: 14
   postgresUser: odoo
   postgresPassword: odoo
   postgresDatabase: odoo
