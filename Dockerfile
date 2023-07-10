@@ -37,4 +37,4 @@ EXPOSE 8069
 
 # Set the entrypoint command to start Odoo
 # This will specify the default addons path and initialise the database and not load any demo data
-CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-i all --without-demo=all"]
+CMD ["/usr/src/app/odoo-bin", "--addons-path=/usr/src/app/addons", "-d odoo", "-i all --without-demo=all"]
