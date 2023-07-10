@@ -1,7 +1,8 @@
 postgres:
   enabled: true
   image:
-    repository: localhost:32000/postgres-custom:local
+    repository: postgres
+    tag: 14
   postgresUser: odoo
   postgresPassword: odoo
   postgresDatabase: odoo
