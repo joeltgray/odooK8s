@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     gcc \
     libldap2-dev \
     libsasl2-dev \
-    libssl-dev
+    libssl-dev \
+    libpq-dev \
+    python3-pip
 
 # Copy the Odoo requirements code into the container
 COPY ./odoo/requirements.txt requirements.txt
