@@ -113,12 +113,6 @@ Running these scripts individually can help ensure a proper installation of Snap
 
 Please note that these troubleshooting steps are provided as general guidance. It is always recommended to investigate and address specific errors or issues based on your system configuration and requirements.
 
-### Calico-Node Issues
-In some cases, the Calico-Node pod may encounter issues during deployment. If you face any networking or connectivity problems, ensure that your /etc/hosts file contains the correct mapping for the hostname localhost. You can add the following line to the file if it doesn't already exist:
-
-```
-127.0.0.1 localhost
-```
 
 ## Todo
 
