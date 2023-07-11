@@ -9,11 +9,10 @@ enable_snap() {
     echo "Enabling snapd service with systemd..."
     sudo systemctl enable snapd.service
     sudo systemctl start snapd.service
-    sudo snap install core
     sudo systemctl status snapd.service | cat
 
     echo "Enabling apparmor with systemd..."
-    sudo systemctl enable --now apparmor.service
+    sudo systemctl enable --now snapd.apparmor
     sudo systemctl start apparmor.service
 }
 
@@ -30,7 +29,7 @@ install_snap_ubuntu() {
 
 # Function to install Snap on Arch Linux
 install_snap_arch() {
-    sudo pacman -S squashfs-tools
+    sudo pacman -S --noconfirm squashfs-tools
     sudo modprobe squashfs
 
     echo "Cloning snapd git repo..."

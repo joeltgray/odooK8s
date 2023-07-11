@@ -39,11 +39,12 @@ echo "Tagged Odoo Docker image as localhost:32000/odoo-source:local"
 print_info "Pushing Odoo Docker image to microk8s local registry... This could take a while go get another coffee.."
 docker push localhost:32000/odoo-source:local
 
-# Install Helm charts
-print_info "Installing Helm charts..."
-cd ./helm
+print_info "Foce a refresh of the local microk8s registry..."
+microk8s ctr images pull localhost:32000/odoo-source:local
 
+# Install Helm charts
 print_info "Uninstalling and installing Odoo Helm chart..."
+cd ./helm
 helm uninstall odoo -n odoo
 sleep 10
 helm install odoo . -n odoo

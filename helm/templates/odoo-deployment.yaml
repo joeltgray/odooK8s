@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: {{ .Values.odoo.name }}
-          image: "{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
-          imagePullPolicy: Never
+          image: "{{ .Values.odoo.image.registry }}/{{ .Values.odoo.image.repository }}:{{ .Values.odoo.image.tag }}"
+          imagePullPolicy: IfNotPresent
           env:
             - name: PGUSER
               value: "{{ .Values.postgres.postgresUser }}"
