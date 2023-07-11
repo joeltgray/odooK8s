@@ -44,7 +44,7 @@ sudo snap remove kubectl
 
 # Uninstall MicroK8s
 echo "Uninstalling MicroK8s..."
-yes | sudo snap remove microk8s
+sudo snap remove microk8s
 
 echo "Uninstall complete!"
 
